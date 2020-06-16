@@ -29,6 +29,6 @@ export default {
     },
 
     onResetForm() {
-        console.log('on reset form')
+        ResultView.hide()
     }
 }
