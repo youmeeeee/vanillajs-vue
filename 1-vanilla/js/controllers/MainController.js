@@ -67,7 +67,8 @@ export default {
     },
 
     onChangeTab (tabName) {
-        debugger
+        this.selectedTab = tabName
+        this.renderView()
     },
 
     onSubmit (input) {
