@@ -40,7 +40,6 @@ export default {
     },
 
     renderView () {
-        console.log(tag, 'renderView()')
         TabView.setActiveTab(this.selectedTab)
 
         if (this.selectedTab === '추천 검색어') {
@@ -72,12 +71,11 @@ export default {
     },
 
     onSubmit (input) {
-        console.log(input)
         this.search(input)
+        this.onAddHistory(input)
     },
 
     search (query) {
-        console.log(tag, 'search()', query)
         FormView.setValue(query)
         SearchModel.list(query).then(data => this.onSearchResult(data))
     },
@@ -85,6 +83,7 @@ export default {
     onSearchResult (data) { 
         TabView.hide()
         KeywordView.hide()
+        HistoryView.hide()
         ResultView.render(data)
     },
 
@@ -103,5 +102,9 @@ export default {
     onRemoveHistory(keyword) {
         HistoryModel.remove(keyword)
         this.renderView() 
-    } 
+    },
+
+    onAddHistory(keyword) {
+        HistoryModel.add(keyword)
+    }
 }
